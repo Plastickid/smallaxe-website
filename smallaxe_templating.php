@@ -2,9 +2,6 @@
 /**
  * Smallaxe templating engine
  *
- * @param $tmpl   - template file
- * @param $args   - Associative array of variables to pass to the template file.
- * @return string - Output of the template file. Likely HTML.
  */
  
 namespace Smallaxe;
@@ -19,7 +16,13 @@ class smallaxe_template {
 			$this->tmpl_path."/"; 
 		}	
 	}	
-	
+
+	/**
+	* load_template()
+	*
+	* @param $tmpl   - template file
+	* @return string - template contents
+    */		
 	function load_template($tmpl){
 		if(file_exists($this->tmpl_path.$tmpl)) {
 			return file_get_contents($this->tmpl_path.$tmpl);   
@@ -29,6 +32,14 @@ class smallaxe_template {
 			return false;  
 		}
 	}
+	
+	/**
+	* render()
+	*
+	* @param $tmpl   - template file
+	* @param $args   - Associative array of variables to pass to the template file.
+	* @return string - Output of the template file. Likely HTML.
+    */	
 	
 	function render($template,$args) {
 		if(is_array($args)){
