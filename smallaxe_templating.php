@@ -42,47 +42,55 @@ class smallaxe_template {
     */	
 	
 	function render($template,$args) {
-		if(is_array($args)){
-			foreach($args as $k=>$v) { 
+		if(is_array($args)):
+			foreach($args as $k=>$v):  
 				preg_match_all(
-					'/(\{\{)('.$k.')(\|)([A-Za-z0-9-_:]+)(\}\})/U', $template, $matches
+					'/(\{\{)('.$k.')(\|)([A-Za-z0-9-_:|]+)(\}\})/U', $template, $matches
 				); 
 				if(is_array($matches)) {
-					foreach($matches as $key=>$val) {
-						$var	= $matches[0][0]; 
-						switch($matches[4][0]) { //the function name
-							case 'upper': 
-								$template = str_replace($var,strtoupper($v),$template); 
-								break; 
-							case 'lower': 
-								$template = str_replace($var,strtolower($v),$template); 
-								break; 
-							case 'trim': 
-								$template = str_replace($var,trim($v),$template); 
-								break; 
-							case 'ucfirst': 
-								$template = str_replace($var,ucfirst(strtolower($v)),$template); 
-								break; 
-							case 'ucwords': 
-								$template = str_replace($var,ucwords(strtolower($v)),$template); 
-								break; 
-							case 'escape': 
-							case 'e': 
-								$template = str_replace($var,htmlspecialchars($v,ENT_QUOTES),$template);
-								break;
-							case 'nl2br': 
-								$template = str_replace($var,nl2br($v),$template); 
-								break; 
-							default: 
-								$template = str_replace($var,$v,$template); 
-								break; 
-						}
-					}
-					unset($matches,$var); 
+					foreach($matches[0] as $key=>$pattern):
+						if(!$pattern) { continue; }  
+						$string 	= $v; 
+						$functions	= explode("|",$matches[4][$key]); 
+						foreach($functions as $fx):
+							switch($fx): //the function name
+								case 'upper': 
+									$string = strtoupper($string); 
+									break; 
+								case 'lower': 
+									$string = strtolower($string); 
+									break; 
+								case 'trim': 
+									$string = trim($string); 
+									break; 
+								case 'ucfirst': 
+									$string = ucfirst(strtolower($string)); 
+									break; 
+								case 'ucwords': 
+									$string = ucwords(strtolower($string)); 
+									break; 
+								case 'escape': 
+								case 'e': 
+									$string = htmlspecialchars($string,ENT_QUOTES); 
+									break;
+								case 'nl2br': 
+									$string = nl2br($string); 
+									break; 
+								case 'rot13': 
+									$string = str_rot13($string); 
+									break; 
+								default: 
+									break; 
+							endswitch; 
+						endforeach; // end functions
+						$template = str_replace($pattern,$string,$template); 
+					endforeach; // end matches
+					unset($matches,$var,$string,$pattern,$functions); 
 				}
 				$template = str_replace('{{'.$k.'}}',$v,$template); 
-			}
-		}
+			endforeach; 
+		endif; 
 		return $template; 
 	}
 }
+
