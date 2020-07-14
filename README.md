@@ -12,7 +12,7 @@ Next, you load your template of choice:
 
 ``` $template	 = $t->load_template('template-name.tmpl'); ```
 
-Finally, you pass an associative array to the 
+Finally, you pass an associative array to the rendering function: 
 
 ``` echo $t->render($template,$data); ```
 
