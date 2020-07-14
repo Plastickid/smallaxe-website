@@ -9,13 +9,32 @@ namespace Smallaxe;
 class smallaxe_template { 
 	
 	public $tmpl_path;
-	
-	function __construct($tmpl_path) {
+	public $memcache;
+	public $ttl; 
+		
+	function __construct($tmpl_path,$memcache=false,$ttl=300) {
 		$this->tmpl_path  = $tmpl_path;
 		if('/' != substr($this->tmpl_path, -1)) {
 			$this->tmpl_path."/"; 
-		}	
+		}
+		$this->memcache = false; 
+		$this->ttl = 300; 	
+		if($memcache) { 
+			$this->memcache = $memcache; 
+			$this->ttl = $ttl; 
+		} 
 	}	
+	
+	function cache_get($tmpl) { 
+		$tmpl = $this->memcache->get(md5($tmpl)); 
+		if($tmpl) { echo "Found in cache!"; return $tmpl; }
+		return false; 
+	}
+
+	function cache_put($tmpl,$text) { 
+		$tmpl = $this->memcache->set(md5($tmpl),$text,$this->ttl); 
+		return; 
+	}
 
 	/**
 	* load_template()
@@ -23,11 +42,20 @@ class smallaxe_template {
 	* @param $tmpl   - template file
 	* @return string - template contents
     */		
-	function load_template($tmpl){
+	function load_template($tmpl) {
+		if($this->memcache) { 
+			$cache = $this->cache_get($tmpl); } 
+			if($cache) { return $cache; 
+			$use_cache = true; 
+		}
 		if(file_exists($this->tmpl_path.$tmpl)) {
-			return file_get_contents($this->tmpl_path.$tmpl);   
+			$text = file_get_contents($this->tmpl_path.$tmpl);
+			if($use_cache) { $this->cache_put($tmpl, $text); }
+			return $text;   
 		} elseif(file_exists($tmpl)) {
-			return file_get_contents($tmpl); 
+			$text = file_get_contents($tmpl); 
+			if($use_cache) { $this->cache_put($tmpl, $text); }
+			return $text;			
 		} else { 
 			return false;  
 		}
@@ -87,6 +115,9 @@ class smallaxe_template {
 					endforeach; // end matches
 					unset($matches,$var,$string,$pattern,$functions); 
 				}
+				$template = preg_replace_callback('/(\{\{date\|)([A-Za-z0-9-, |]+)(\}\})/U',function($matches) {
+					return date($matches[2]); 
+				},$template); 			
 				$template = str_replace('{{'.$k.'}}',$v,$template); 
 			endforeach; 
 		endif; 

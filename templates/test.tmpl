@@ -1,12 +1,14 @@
 <html>
 	<head>
-		<title>A test</title>
+		<title>A test of {{software_title|ucwords}}</title>
 	</head>
 	<body>
-		<h1>Welcome to {{software_title|upper|rot13}}</h1>
-		<p>This is a test of {{software_title|lower}}.  It was written by {{author|ucwords}} in the year {{year}}. It is written in {{language|upper}} and is stored in {{rcs|ucfirst}}. </p>
+		<h1>WELCOME TO {{software_title|upper}}</h1>
+		<p>This is a test of {{software_title}}.  It was written by {{author|ucwords}}, current date is {{date|M d, Y}}. It is written in {{language|upper}} and is stored in {{rcs|ucfirst}}. </p>
 		<p>It has basic skills, such as escaping text: 
-		<code>{{test_text|e}}</code>
+			<code>{{test_text|e}}</code>
+		</p>
+		<p>It supports simple functions, such as rot13 - {{software_title|rot13}} - and juggling case - {{software_title|lower}}. It also can chain functions, such as uppercasing and rot13: {{software_title|upper|rot13}}
 		</p>
 	</body>
 </html>
