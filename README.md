@@ -37,11 +37,19 @@ The following short-hand functions are supported:
 * rot13 &mdash; rotate letters 13 characters forward
 
 ### Extention
-Small Axe can handle other functions in templates using the extend() method. 
-``` $template->extend(['function1','function2','function3']); ``` will add additional functionality to the templating process. A few notes: functions will only work if they accept a string with no further arguments and return a string. Also, Small Axe will not accept the functions exec(), system(), passthru(), or shell_exec(),  
+Small Axe can handle other functions in templates using the extend() method. For example:  
+``` $t->extend(['function1','function2','function3']); ``` 
+will add additional functionality to the templating process. 
+A few notes: functions will only work if they accept a string with no further arguments and return a string. Also, Small Axe will not accept the functions exec(), system(), passthru(), or shell_exec() as these functions can create dangerous execution conditions. 
 
 ### Other syntax
 {{date|format}} is supported, where format is an unquoted string using the arguments at php.net/date.  
+
+## Interacting with the Small Axe object
+``` $t->extend(['function1','function2','function3']); ``` will allow you to add additional supported functions 
+```$t->unextend()``` will reset the allowed functions list to the small list of permitted default functions 
+```$t->load_supported_functions()``` will load all known supported string functions
+
 
 
 
