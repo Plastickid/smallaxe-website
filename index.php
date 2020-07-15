@@ -23,7 +23,8 @@ $vars = [
 	'year'			  	=> "2020",
 	'language'		 	=> "php",
 	'rcs'			  	=> 'github',
-	'test_text'		 	=> "<i><b>This should be escaped text</b></i>"
+	'test_text'		 	=> "<i><b>This should be escaped text</b></i>",
+	'random'			=> "This is a random string"
 ];
 
 # load template by passing either the file in the templates folder OR a hard coded path 
