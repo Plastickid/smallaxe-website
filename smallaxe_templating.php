@@ -151,9 +151,6 @@ class smallaxe_template {
 								case 'e': 
 									$string = htmlspecialchars($string,ENT_QUOTES); 
 									break;
-								case 'rot13': 
-									$string = str_rot13($string); 
-									break; 
 								default: 
 									if(function_exists($fx)) {
 										if(in_array($fx,$this->allow_fx)) {
