@@ -11,7 +11,6 @@ class smallaxe_template {
 	public $tmpl_path;
 	public $mc;
 	public $ttl; 
-	private $allowed_functions;  
 		
 	function __construct($tmpl_path,$memcached=false,$ttl=300) {
 		$this->tmpl_path  = $tmpl_path;
@@ -20,20 +19,25 @@ class smallaxe_template {
 		}
 		$this->mc = false; 
 		$this->ttl = 300; 
-		$this->allow_fx = ['str_rot13','strtoupper','strtolower','htmlspecialchars','trim',
-									'htmlentities','ucfirst','nl2br'];  	
+		$this->default_fx = ['str_rot13','strtoupper','strtolower','htmlspecialchars','trim',
+		'htmlentities','ucfirst','nl2br'];  
+		$this->allow_fx = $this->default_fx;  	
 		if($memcached) { 
 			$this->mc = $memcached; 
 			$this->ttl = $ttl; 
 		} 
 	}	
 	
-	function extend($functions=[]) {
+	public function extend($functions=[]) {
 		foreach($functions as $fx) { 
 			if(!in_array($fx,['exec','system','passthru','shell_exec'])) {
 				$this->allow_fx[] = $fx; 
 			}
 		}
+	}
+	
+	public function unextend() { 
+		$this->allow_fx = $this->default_fx;
 	}
 
 	/**
