@@ -15,8 +15,8 @@ $T->enable_cache($memcache);
 # you can also add functions that the template can parse
 # currently, functions are only supported if they can take the value as an argument and return it as a string
 # only functions YOU explicitly allow will work in your templates
-# for example, this will add the "sha1()" function  
-$T->extend(['sha1']); 
+# for example, this will add the "sha1()" and "str_rot13" functions  
+$T->extend(['sha1', 'str_rot13']); 
 
 # the extend() method will also accept your custom functions
 function custom_function($string) { 
