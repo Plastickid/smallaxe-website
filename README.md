@@ -67,8 +67,6 @@ Small Axe will **not** accept the functions _exec(), system(), passthru(),_ or _
 
 ```$t->load_supported_functions()``` will load all known supported string functions
 
-```$t->uncache()``` will delete the memcache entry for a template 
+```$t->enable_cache(resource $memcache, int $ttl)``` will enable memory caching of uncompiled templates. You can pass a Memcache or Memcached resource to enable to cache. An optional $ttl will specify the "time to live" of your memcached object, which defaults to 300 seconds. You may want to set $ttl to a large number to reduce file system reads. 30 days - which is a value of 2592000 - is a reasonable number for templates that don't change often.   
 
-
-
-
+```$t->uncache()``` will delete the memcache entry for a template. If you've made changes to a template with a long $ttl, you can uncache it.   
