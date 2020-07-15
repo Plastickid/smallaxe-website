@@ -1,10 +1,8 @@
 # Small Axe Templating
 
-Small Axe Templating is a simple PHP templating library that is designed to be extremely simple to use. There are three components to using a Small Axe template. 
+Small Axe Templating is a simple PHP templating library that is designed to be extremely simple to use. There are three steps to using a Small Axe template. 
 
-## General Use 
-
-First, we instanciate the object and pass it the path to templates. 
+First, you instanciate the object and pass it the path to templates. 
 
 ``` $t = new Smallaxe\smallaxe_template('/path/to/templates/'); ```
 
@@ -14,7 +12,9 @@ Next, you load your template of choice:
 
 Finally, you pass an associative array to the rendering function: 
 
-``` echo $t->render($template,$data); ```
+``` $html = $t->render($template,$data); ```
+
+That's it. ```$html``` will now contain your ready-to-go output. 
 
 ## Working with Small Axe
 
