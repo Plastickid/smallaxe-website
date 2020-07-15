@@ -20,10 +20,10 @@ That's it. ```$html``` will now contain your ready-to-go output.
 
 ### Variables 
 
-Small Axe Templating uses double curly braces for template variable, e.g. {{variable}}. If a curly-brace-wrapped variable matches the index of your data array, it will be replaced in your rendered template. If it doesn't match an argument, it will be left alone.  
+Small Axe Templating uses double curly braces for template variable, e.g. ```{{variable}}```. If a curly-brace-wrapped variable matches the index of your data array, it will be replaced in your rendered template. If it doesn't match an argument, it will be left alone.  
 
 ### Functions 
-You can also manipulate the variable using piped functions, e.g. {{variable|function}}. Note that functions can be chained, meaning {{variable|function1|function2|function3}} is valid syntax.  
+You can also manipulate the variable using piped functions, e.g. ```{{variable|function}}```. Note that functions can be chained, meaning ```{{variable|function1|function2|function3}}``` is valid syntax.  
 
 The functions that are current supported by default are: 
 * trim 
