@@ -29,7 +29,7 @@ $T->extend(['custom_function']);
 $vars = [
 	'software_title' 	=> "Small Axe Templating",
 	"author"		  	=> "adam scheinberg", 
-	'year'			  	=> "2020",
+	'year'			  	=> date('Y'),
 	'language'		 	=> "php",
 	'test_text'		 	=> "<i><b>This should be escaped text</b></i>",
 	'random'			=> "This is a random string"
@@ -44,3 +44,19 @@ $html		 = $T->render($template,$vars);
 
 # echo the template 
 echo $html; 
+
+echo "<p>You can use a template multiple times.</p>"; 
+
+$members = [
+	['firstname'=>'steve', 'lastname'=>'howe', 'instrument'=>'guitar'],
+	['firstname'=>'jon', 'lastname'=>'anderson', 'instrument'=>'vocals'],
+	['firstname'=>'rick', 'lastname'=>'wakeman', 'instrument'=>'keyboards'],
+	['firstname'=>'bill', 'lastname'=>'bruford', 'instrument'=>'drums'],
+	['firstname'=>'chris', 'lastname'=>'squire', 'instrument'=>'bass'],
+];
+$template2	 = $T->load_template("yes");
+echo "<ul>";
+foreach($members as $member) {
+	echo $T->render($template2,$member); 
+}
+echo "</ul>";
