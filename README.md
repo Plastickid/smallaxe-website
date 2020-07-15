@@ -35,6 +35,7 @@ The functions that are current supported by default are:
 * stripslashes
 * strip_tags
 * md5
+* intval
 
 The following short-hand functions are supported: 
 * upper &mdash; wrap output in strtoupper
@@ -48,7 +49,7 @@ Small Axe can handle other functions in templates using the extend() method. For
 ``` $t->extend(['function1','function2','function3']); ``` 
 will add additional functionality to the templating process. 
 
-A few notes: functions will only work if they accept a string with no further arguments and return a string. The functions that Small Axe Templating is known to support are: ```addcslashes, addslashes, bin2hex, chop, chr, chunk_split, convert_cyr_string, convert_uudecode, convert_uuencode, count_chars, crc32, crypt, get_html_translation_table, hex2bin, html_entity_decode, htmlentities, htmlspecialchars_decode, lcfirst, ltrim, metaphone, money_format, ord, quotemeta, rtrim, sha1, soundex, str_rot13, str_word_count, stripcslashes, strlen, strrev, strtok```
+A few notes: functions will only work if they accept a string with no further arguments and return a string. The functions that Small Axe Templating is known to support are: ```addcslashes, addslashes, bin2hex, chop, chr, chunk_split, convert_cyr_string, convert_uudecode, convert_uuencode, count_chars, crc32, crypt, get_html_translation_table, hex2bin, html_entity_decode, htmlentities, htmlspecialchars_decode, lcfirst, ltrim, metaphone, money_format, ord, quotemeta, rtrim, sha1, soundex, str_rot13, str_word_count, stripcslashes, strlen, strrev, strtok, floatval, ceil, floor```
 
 Small Axe will **not** accept the functions _exec(), system(), passthru(),_ or _shell_exec()_ as these functions can create dangerous execution conditions. 
 
