@@ -44,7 +44,6 @@ The following short-hand functions are supported:
 * lower &mdash; wrap output in strtolower
 * escape &mdash; escape output
 * e &mdash; an alias of _escape_
-* rot13 &mdash; rotate letters 13 characters forward
 
 ### Extention
 Small Axe can handle other functions in templates using the extend() method. For example:  
