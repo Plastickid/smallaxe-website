@@ -13,8 +13,8 @@ $T = new Smallaxe\smallaxe_template(__DIR__.'/templates/',$memcache);
 # you can also add functions that the template can parse
 # currently, functions are only supported if they can take the value as an argument and return it as a string
 # only functions explictly allowed will work
-# this will add the "ucwords()" function  
-$T->extend(['ucwords']); 
+# this will add the "sha1()" function  
+$T->extend(['sha1']); 
 
 # define our variables
 $vars = [

@@ -36,6 +36,10 @@ class smallaxe_template {
 		}
 	}
 	
+	public function uncache($tmpl) { 
+		$this->mc->delete(md5($tmpl));
+	} 
+	
 	public function unextend() { 
 		$this->allow_fx = $this->default_fx;
 	}
