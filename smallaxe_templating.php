@@ -9,31 +9,31 @@ namespace Smallaxe;
 class smallaxe_template { 
 	
 	public $tmpl_path;
-	public $memcache;
+	public $mc;
 	public $ttl; 
+	private $allowed_functions;  
 		
-	function __construct($tmpl_path,$memcache=false,$ttl=300) {
+	function __construct($tmpl_path,$memcached=false,$ttl=300) {
 		$this->tmpl_path  = $tmpl_path;
 		if('/' != substr($this->tmpl_path, -1)) {
 			$this->tmpl_path."/"; 
 		}
-		$this->memcache = false; 
-		$this->ttl = 300; 	
-		if($memcache) { 
-			$this->memcache = $memcache; 
+		$this->mc = false; 
+		$this->ttl = 300; 
+		$this->allow_fx = ['str_rot13','strtoupper','strtolower','htmlspecialchars','trim',
+									'htmlentities','ucfirst','nl2br'];  	
+		if($memcached) { 
+			$this->mc = $memcached; 
 			$this->ttl = $ttl; 
 		} 
 	}	
 	
-	function cache_get($tmpl) { 
-		$tmpl = $this->memcache->get(md5($tmpl)); 
-		if($tmpl) { echo "Found in cache!"; return $tmpl; }
-		return false; 
-	}
-
-	function cache_put($tmpl,$text) { 
-		$tmpl = $this->memcache->set(md5($tmpl),$text,$this->ttl); 
-		return; 
+	function extend($functions=[]) {
+		foreach($functions as $fx) { 
+			if(!in_array($fx,['exec','system'])) {
+				$this->allow_fx[] = $fx; 
+			}
+		}
 	}
 
 	/**
@@ -43,18 +43,18 @@ class smallaxe_template {
 	* @return string - template contents
     */		
 	function load_template($tmpl) {
-		if($this->memcache) { 
-			$cache = $this->cache_get($tmpl); } 
-			if($cache) { return $cache; 
+		if($this->mc) { 
+			$text = $this->mc->get(md5($tmpl)); 
+			if($text) { return $text; }
 			$use_cache = true; 
 		}
 		if(file_exists($this->tmpl_path.$tmpl)) {
 			$text = file_get_contents($this->tmpl_path.$tmpl);
-			if($use_cache) { $this->cache_put($tmpl, $text); }
+			if($use_cache) { $this->mc->set(md5($tmpl), $text, $this->ttl); }
 			return $text;   
 		} elseif(file_exists($tmpl)) {
 			$text = file_get_contents($tmpl); 
-			if($use_cache) { $this->cache_put($tmpl, $text); }
+			if($use_cache) { $this->mc->set(md5($tmpl), $text, $this->ttl); }
 			return $text;			
 		} else { 
 			return false;  
@@ -88,15 +88,6 @@ class smallaxe_template {
 								case 'lower': 
 									$string = strtolower($string); 
 									break; 
-								case 'trim': 
-									$string = trim($string); 
-									break; 
-								case 'ucfirst': 
-									$string = ucfirst(strtolower($string)); 
-									break; 
-								case 'ucwords': 
-									$string = ucwords(strtolower($string)); 
-									break; 
 								case 'escape': 
 								case 'e': 
 									$string = htmlspecialchars($string,ENT_QUOTES); 
@@ -108,6 +99,11 @@ class smallaxe_template {
 									$string = str_rot13($string); 
 									break; 
 								default: 
+									if(function_exists($fx)) {
+										if(in_array($fx,$this->allow_fx)) {
+											$string = $fx($string); 
+										}
+									}
 									break; 
 							endswitch; 
 						endforeach; // end functions
