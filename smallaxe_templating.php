@@ -30,7 +30,7 @@ class smallaxe_template {
 	
 	function extend($functions=[]) {
 		foreach($functions as $fx) { 
-			if(!in_array($fx,['exec','system'])) {
+			if(!in_array($fx,['exec','system','passthru','shell_exec'])) {
 				$this->allow_fx[] = $fx; 
 			}
 		}
