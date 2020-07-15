@@ -16,7 +16,7 @@ Finally, you pass an associative array to the rendering function:
 
 That's it. ```$html``` will now contain your ready-to-go output. 
 
-You can see the output at [code.adamscheinberg.com](https://code.adamscheinberg.com/smallaxe-templating/example.php)
+You can see the output at [code.adamscheinberg.com](https://code.adamscheinberg.com/smallaxe-templating/)
 
 ## Working with Small Axe
 
