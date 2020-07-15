@@ -1,10 +1,8 @@
 # Small Axe Templating
 
-Small Axe Templating is a simple PHP templating library that is designed to be extremely simple to use. There are three components to using a Small Axe template. 
+Small Axe Templating is a simple PHP templating library that is designed to be extremely simple to use. There are three steps to using a Small Axe template. 
 
-### Use 
-
-First, we instanciate the object and pass it the path to templates. 
+First, you instanciate the object and pass it the path to templates. 
 
 ``` $t = new Smallaxe\smallaxe_template('/path/to/templates/'); ```
 
@@ -14,7 +12,11 @@ Next, you load your template of choice:
 
 Finally, you pass an associative array to the rendering function: 
 
-``` echo $t->render($template,$data); ```
+``` $html = $t->render($template,$data); ```
+
+That's it. ```$html``` will now contain your ready-to-go output. 
+
+## Working with Small Axe
 
 ### Variables 
 
@@ -49,7 +51,7 @@ Small Axe can handle other functions in templates using the extend() method. For
 ``` $t->extend(['function1','function2','function3']); ``` 
 will add additional functionality to the templating process. 
 
-A few notes: functions will only work if they accept a string with no further arguments and return a string. The functions that Small Axe Templating is known to support are: ```addcslashes, addslashes, bin2hex, chop, chr, chunk_split, convert_cyr_string, convert_uudecode, convert_uuencode, count_chars, crc32, crypt, get_html_translation_table, hex2bin, html_entity_decode, htmlentities, htmlspecialchars_decode, lcfirst, ltrim, metaphone, money_format, ord, quotemeta, rtrim, sha1, soundex, str_rot13, str_word_count, stripcslashes, strlen, strrev, strtok, floatval, ceil, floor```
+A few notes: functions will only work if they 1) accept a string with no further arguments and 2) return a string. The functions that Small Axe Templating is known to support are: ```addcslashes, addslashes, bin2hex, chop, chr, chunk_split, convert_cyr_string, convert_uudecode, convert_uuencode, count_chars, crc32, crypt, get_html_translation_table, hex2bin, html_entity_decode, htmlentities, htmlspecialchars_decode, lcfirst, ltrim, metaphone, money_format, ord, quotemeta, rtrim, sha1, soundex, str_rot13, str_word_count, stripcslashes, strlen, strrev, strtok, floatval, ceil, floor```
 
 Small Axe will **not** accept the functions _exec(), system(), passthru(),_ or _shell_exec()_ as these functions can create dangerous execution conditions. 
 
@@ -64,6 +66,8 @@ Small Axe will **not** accept the functions _exec(), system(), passthru(),_ or _
 ```$t->unextend()``` will reset the allowed functions list to the small list of permitted default functions 
 
 ```$t->load_supported_functions()``` will load all known supported string functions
+
+```$t->uncache()``` will delete the memcache entry for a template 
 
 
 
