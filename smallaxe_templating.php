@@ -19,8 +19,8 @@ class smallaxe_template {
 		}
 		$this->mc = false; 
 		$this->ttl = 300; 
-		$this->default_fx = ['str_rot13','strtoupper','strtolower','htmlspecialchars','trim',
-		'htmlentities','ucfirst','nl2br'];  
+		$this->default_fx = ['ucfirst','ucwords','strtoupper','strtolower','htmlspecialchars','trim','nl2br', 'number_format','stripslashes', 'strip_tags', 'md5'];  
+		$this->all_supported = ['addcslashes', 'addslashes', 'bin2hex', 'chop', 'chr', 'chunk_split', 'convert_cyr_string', 'convert_uudecode', 'convert_uuencode', 'count_chars', 'crc32', 'crypt', 'get_html_translation_table', 'hex2bin', 'html_entity_decode', 'htmlentities', 'htmlspecialchars_decode', 'lcfirst', 'ltrim', 'metaphone', 'money_format',  'ord', 'quotemeta', 'rtrim', 'sha1', 'soundex', 'str_rot13', 'str_word_count',  'stripcslashes', 'strlen', 'strrev', 'strtok' ];
 		$this->allow_fx = $this->default_fx;  	
 		if($memcached) { 
 			$this->mc = $memcached; 
@@ -38,6 +38,15 @@ class smallaxe_template {
 	
 	public function unextend() { 
 		$this->allow_fx = $this->default_fx;
+	}
+	
+	public function load_supported_functions() { 
+		foreach($this->default_fx as $fx) { 
+			$this->allow_fx[] = $fx; 
+		}
+		foreach($this->all_supported as $fx) { 
+			$this->allow_fx[] = $fx; 
+		}		
 	}
 
 	/**
@@ -96,9 +105,6 @@ class smallaxe_template {
 								case 'e': 
 									$string = htmlspecialchars($string,ENT_QUOTES); 
 									break;
-								case 'nl2br': 
-									$string = nl2br($string); 
-									break; 
 								case 'rot13': 
 									$string = str_rot13($string); 
 									break; 
