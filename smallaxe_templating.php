@@ -167,7 +167,8 @@ class smallaxe_template {
 				$template = preg_replace_callback('/(\{\{date\|)([A-Za-z0-9-, |]+)(\}\})/U',function($matches) {
 					return date($matches[2]); 
 				},$template); 	
-				$template = str_replace('{{uniqid}}',uniqid(),$template); 		
+				$template = str_replace('[[uniqid]]',uniqid(),$template); 	
+				$template = str_replace('[[year]]',date("Y"),$template);	 	
 				$template = str_replace('{{'.$k.'}}',$v,$template); 
 			endforeach; 
 		endif; 

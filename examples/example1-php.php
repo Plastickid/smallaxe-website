@@ -1,11 +1,10 @@
 <?php
 
 # require the templating library 
-require 'smallaxe_templating.php'; 
-
+require '../smallaxe_templating.php'; 
 
 # first, you instanciate a Small Axe object
-$T = new Smallaxe\smallaxe_template(__DIR__.'/templates/',$memcache);
+$T = new Smallaxe\smallaxe_template(__DIR__.'/../templates/');
 
 # You can feed the Small Axe object a memcached resource for storing uncompiled templates
 # a memory cache system is optional
@@ -44,40 +43,3 @@ $html		 = $T->render($template,$vars);
 
 # echo the template 
 echo $html; 
-
-# ================================================================
-echo "<hr>";
-# ================================================================
-
-echo "<h1>REUSING A TEMPLATE</h1><p>You can use a template multiple times.</p>"; 
-
-$members = [
-	['firstname'=>'steve', 'lastname'=>'howe', 'instrument'=>'guitar'],
-	['firstname'=>'jon', 'lastname'=>'anderson', 'instrument'=>'vocals'],
-	['firstname'=>'rick', 'lastname'=>'wakeman', 'instrument'=>'keyboards'],
-	['firstname'=>'bill', 'lastname'=>'bruford', 'instrument'=>'drums'],
-	['firstname'=>'chris', 'lastname'=>'squire', 'instrument'=>'bass'],
-];
-$template2	 = $T->load_template("demo2");
-echo "<ul>";
-$bandlist = '';
-foreach($members as $member) {
-	$bandlist .= $T->render($template2,$member); 
-}
-echo $bandlist; 
-echo "</ul>";
-
-# ================================================================
-echo "<hr>";
-# ================================================================
-
-# we can use the output of the template above to feed back into another template
-$band = [
-	'bandname' => 'yes',
-	'year_formed'=>1968,
-	'number_albums'=>21,
-	'bandlist'=>$bandlist
-];
-$template3 = $T->load_template("demo3");
-echo $T->render($template3,$band); 
-	

@@ -24,6 +24,8 @@ You can see the output at [code.adamscheinberg.com](https://code.adamscheinberg.
 
 Small Axe Templating uses double curly braces for template variable, e.g. ```{{variable}}```. If a curly-brace-wrapped variable matches the index of your data array, it will be replaced in your rendered template. If it doesn't match an argument, it will be left alone.  
 
+Small Axe uses double brackets for dynamic replacement. ```[[year]]```, for example, will show the current year.  
+
 ### Functions 
 You can also manipulate the variable using piped functions, e.g. ```{{variable|function}}```. Note that functions can be chained, meaning ```{{variable|function1|function2|function3}}``` is valid syntax.  
 
@@ -59,7 +61,9 @@ Small Axe will **not** accept the functions _exec(), system(), passthru(),_ or _
 ### Other syntax
 ```{{date|format}}``` is supported, where format is an unquoted string using the arguments at php.net/date. 
 
-```{{uniqid}}``` will generate a unique - [but not unguessable](https://www.php.net/uniqid) - identifier.  
+### Dynamic Replacement
+```[[year]]``` will display the current year.  
+```[[uniqid]]``` will generate a unique - [but not unguessable](https://www.php.net/uniqid) - identifier.  
 
 ## Interacting with the Small Axe object
 ``` $t->extend(['function1','function2','function3']); ``` will allow you to add additional supported functions 
