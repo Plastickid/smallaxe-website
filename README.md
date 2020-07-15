@@ -54,6 +54,7 @@ Small Axe will **not** accept the functions _exec(), system(), passthru(),_ or _
 
 ### Other syntax
 {{date|format}} is supported, where format is an unquoted string using the arguments at php.net/date. 
+
 {{uniqid}} will generate a unique - [but not unguessable](https://www.php.net/uniqid) - identifier.  
 
 ## Interacting with the Small Axe object
