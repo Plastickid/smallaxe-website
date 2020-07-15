@@ -16,21 +16,32 @@ Finally, you pass an associative array to the rendering function:
 
 ``` echo $t->render($template,$data); ```
 
-### Operations
+### Variables 
 
-Small Axe Templating uses double curly braces for template variable, e.g. {{variable}}. You can also manipulate the variable using a piped function, e.g. {{variable|function}}. 
+Small Axe Templating uses double curly braces for template variable, e.g. {{variable}}. If a curly-brace-wrapped variable matches the index of your data array, it will be replaced in your rendered template. If it doesn't match an argument, it will be left alone.  
+
+### Functions 
+You can also manipulate the variable using piped functions, e.g. {{variable|function}}. Note that functions can be chained, meaning {{variable|function1|function2|function3}} is valid syntax.  
 
 The functions that are current supported are: 
-* upper &mdash; wrap output in strtoupper
-* lower &mdash; wrap output in strtolower
 * trim &mdash; trim output
 * ucfirst &mdash; wrap output in ucfirst
 * ucwords &mdash; wrap output in ucwords  
-* escape &mdash; escape output
-* e &mdash; an alias of _escape_
 * nl2br &mdash; convert line breaks to HTML br tags
 
+The following short-hand functions are supported: 
+* upper &mdash; wrap output in strtoupper
+* lower &mdash; wrap output in strtolower
+* escape &mdash; escape output
+* e &mdash; an alias of _escape_
+* rot13 &mdash; rotate letters 13 characters forward
 
+### Extention
+Small Axe can handle other functions in templates using the extend() method. 
+``` $template->extend(['function1','function2','function3']); ``` will add additional functionality to the templating process. A few notes: functions will only work if they accept a string with no further arguments and return a string. Also, Small Axe will not accept the functions exec(), system(), passthru(), or shell_exec(),  
+
+### Other syntax
+{{date|format}} is supported, where format is an unquoted string using the arguments at php.net/date.  
 
 
 
