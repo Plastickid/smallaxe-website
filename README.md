@@ -57,9 +57,9 @@ A few notes: functions will only work if they 1) accept a string with no further
 Small Axe will **not** accept the functions _exec(), system(), passthru(),_ or _shell_exec()_ as these functions can create dangerous execution conditions. 
 
 ### Other syntax
-{{date|format}} is supported, where format is an unquoted string using the arguments at php.net/date. 
+```{{date|format}}``` is supported, where format is an unquoted string using the arguments at php.net/date. 
 
-{{uniqid}} will generate a unique - [but not unguessable](https://www.php.net/uniqid) - identifier.  
+```{{uniqid}}``` will generate a unique - [but not unguessable](https://www.php.net/uniqid) - identifier.  
 
 ## Interacting with the Small Axe object
 ``` $t->extend(['function1','function2','function3']); ``` will allow you to add additional supported functions 
