@@ -152,6 +152,26 @@ class smallaxe_template {
 									$string = htmlspecialchars($string,ENT_QUOTES); 
 									break;
 								default: 
+									if(stristr($fx, ":")) {
+										$fxparts = explode(":",$fx);   
+										$fx2 = $fxparts[0]; 
+										switch($fx2):
+											case 'substr':
+												$string = strtolower($string); 
+												$start = $fxparts[1]; 
+												$length = $fxparts[2]; 
+												$string = substr($string, $start, $length); 
+												break; 
+											case 'ellipses':
+												$strlen = strlen($string);
+												if($strlen>$fxparts[1]) {
+													$string = substr($string, 0, $fxparts[1])."..."; 
+												} 
+												break; 												
+											default: 
+												break; 	 
+										endswitch; 
+									} 
 									if(function_exists($fx)) {
 										if(in_array($fx,$this->allow_fx)) {
 											$string = $fx($string); 

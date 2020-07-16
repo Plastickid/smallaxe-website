@@ -31,7 +31,8 @@ $vars = [
 	'year'			  	=> date('Y'),
 	'language'		 	=> "php",
 	'test_text'		 	=> "<i><b>This should be escaped text</b></i>",
-	'random'			=> "This is a random string"
+	'random'			=> "This is a random string",
+	'longstring'		=> "The quick brown fox jumped over the lazy dog"
 ];
 
 # load template by passing either the file in the templates folder OR a hard coded path 

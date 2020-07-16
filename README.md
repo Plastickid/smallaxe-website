@@ -22,7 +22,7 @@ You can see the output at [code.adamscheinberg.com](https://code.adamscheinberg.
 
 ### Variables 
 
-Small Axe Templating uses double curly braces for template variable, e.g. ```{{variable}}```. If a curly-brace-wrapped variable matches the index of your data array, it will be replaced in your rendered template. If it doesn't match an argument, it will be left alone.  
+Small Axe Templating uses double curly braces for template variable, e.g. ```{{variable}}```. If a curly-brace-wrapped variable matches an index of your $data array, it will be replaced by the value of that array element your rendered template. If it doesn't match an argument, it will be left alone.  
 
 Small Axe uses double brackets for dynamic replacement. ```[[year]]```, for example, will show the current year.  
 
@@ -48,6 +48,13 @@ The following short-hand functions are supported:
 * lower &mdash; wrap output in strtolower
 * escape &mdash; escape output
 * e &mdash; an alias of _escape_
+
+### Multi-argument functions
+Small Axe templates support multi-argument functions in the format <code>{{var|function:arg1:arg2:arg3}}</code>. Currently, you can use the following functions: 
+
+* substr:offset:length
+
+You can also use the shortcut function <code>ellipses</code> to trim a string if it exceeds the argument. For example, <code>{{var|ellipses:18}}</code> will trim and append "..." to a $var only if it exceeds 18 characters in length, including spaces. 
 
 ### Extention
 Small Axe can handle other functions in templates using the extend() method. For example:  
