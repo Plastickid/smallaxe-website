@@ -23,6 +23,7 @@ class smallaxe_template {
 		$this->ttl = 0; 
 		$this->caching = false; 
 		$this->cache_compiled = false; 
+		$this->current_template = false; 
 		$this->default_fx = ['ucfirst','ucwords','strtoupper','strtolower','htmlspecialchars','trim','nl2br', 'number_format','stripslashes', 'strip_tags', 'md5','intval'];  
 		$this->all_supported = ['addcslashes', 'addslashes', 'bin2hex', 'chop', 'chr', 'chunk_split', 'convert_cyr_string', 'convert_uudecode', 'convert_uuencode', 'count_chars', 'crc32', 'crypt', 'get_html_translation_table', 'hex2bin', 'html_entity_decode', 'htmlentities', 'htmlspecialchars_decode', 'lcfirst', 'ltrim', 'metaphone', 'money_format',  'ord', 'quotemeta', 'rtrim', 'sha1', 'soundex', 'str_rot13', 'str_word_count',  'stripcslashes', 'strlen', 'strrev', 'strtok','floatval','ceil','floor' ];
 		$this->allow_fx = $this->default_fx; 
@@ -100,7 +101,7 @@ class smallaxe_template {
 	* @param $tmpl - template name
 	* @param $text - template text to cache
 	* @param ttl - an integer, seconds to keep template in memory cache, default: 300/5 mins
-	* @return void
+	* @return string template text on success, or boolean false if no template is found 
 	*/		
 	public function cache_read($tmpl) {
 		if($this->caching) {
@@ -289,6 +290,10 @@ class smallaxe_template {
 				$template = str_replace('{{'.$k.'}}',$v,$template); 
 			endforeach; 
 		endif; 
+		/* 
+		// this is where we will cache compiled template in the future
+		if($this->cache_compiled) { $this->cache_update($template,$text,$ttl=86400)}
+		*/
 		return $template; 
 	}
 }
