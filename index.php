@@ -7,9 +7,9 @@
 			body {
 				padding:20px 5%;
 			}
-			h1 { background:#cff; padding:10px; }
-			h2 { background:#ffc; padding:5px; }
-			h3 { background:#ddd; padding:5px; }
+			h1 { background:#efe; padding:10px; }
+			h2 { background:#ffe; padding:5px; }
+			h3 { background:#cecece; padding:5px; }
 			code { background:#eee; padding:2px; font-family:'courier new'; }		 
 		</style>
 		<title>Small Axe Templating</title>
@@ -26,16 +26,15 @@
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active">
 						<a class="nav-link" href="https://code.adamscheinberg.com/smallaxe-templating/">Home <span class="sr-only">(current)</span></a>
-					</li>				
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Examples
-						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="https://code.adamscheinberg.com/smallaxe-templating/examples/example1.php">Example 1</a>
-							<a class="dropdown-item" href="https://code.adamscheinberg.com/smallaxe-templating/examples/example2.php">Example 2</a>
-							<a class="dropdown-item active" href="https://code.adamscheinberg.com/smallaxe-templating/examples/example3.php">Example 3</a>
-						</div>
+					</li>	
+					<li class="nav-item">
+						<a class="nav-link" href="https://code.adamscheinberg.com/smallaxe-templating/examples/example1.php">Example 1</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="https://code.adamscheinberg.com/smallaxe-templating/examples/example2.php">Example 2</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="https://code.adamscheinberg.com/smallaxe-templating/examples/example3.php">Example 3</a>
 					</li>	
 				</ul>
 			</div>

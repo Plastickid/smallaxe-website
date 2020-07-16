@@ -4,15 +4,17 @@
 	</head>
 	<body>
 		<h1>WELCOME TO {{software_title|upper}}</h1>
-		<p>This is a test of {{software_title}}.  It was written by {{author|ucwords}}, current date is {{date|M d, Y}}. It is written in {{language|upper}}.</p>
+		<h5>Use the source tab above to compare the rendered template to the source.</h5>
+		<p>This is a test of {{software_title}}.  It was written by {{author|ucwords}}. It is written in {{language|upper}}.</p>
+		<p>The current date is {{date|F d, Y}}, which is often written as {{date|Y-m-d}} and corresponds to unix timestamp {{date|U}}. You can use arguments found at <a href="https://php.net/date">php.net/date</a>.</p>
 		<p>It has basic skills, such as escaping text: 
 			<code>{{test_text|e}}</code>
 		</p>
-		<p>It supports simple functions, such as str_rot13 - {{software_title|str_rot13}} - and juggling case - {{software_title|lower}}. </p>
+		<p>It supports simple string functions, such as str_rot13 - {{software_title|str_rot13}} - and juggling case - {{software_title|lower}}. </p>
 		<p>It supports custom functions: {{software_title|custom_function}}. </p>
 		<p>It also can chain functions, such as uppercasing and str_rot13: {{software_title|upper|str_rot13}}. </p>
 		<p>Here is a function that was dynamically added, sha1: {{random|sha1}}</p>
 		<p>Here is an example of a dynamic unique identifier: [[uniqid]].</p>
-		<p>You can use <b>substr</b>: <i>{{longstring|substr:3:10}}</i>. A long string can be quickly shortened using the shortcut function <b>ellipses</b>: <i>{{longstring|ellipses:18}}</i></p>
+		<p>You can use <b>substr</b>, here's substr($str,3,10): <i>{{longstring|substr:3:10}}</i>. A long string can be quickly shortened using the shortcut function <b>ellipsis</b>: <i>{{longstring|ellipsis:18}}</i></p>
 	</body>
 </html>

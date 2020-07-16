@@ -13,22 +13,23 @@ $members = [
 	['firstname'=>'bill', 'lastname'=>'bruford', 'instrument'=>'drums'],
 	['firstname'=>'chris', 'lastname'=>'squire', 'instrument'=>'bass'],
 ];
-$template2	 = $T->load_template("demo2");
 
-echo "<ul>";
-$bandlist = '';
+# load demo2 template
+$template2	= $T->load_template("demo2");
+$bandlist 	= null;
 foreach($members as $member) {
+	# render the template and appoend it to the $bandlist variable
 	$bandlist .= $T->render($template2,$member); 
 }
-echo $bandlist; 
-echo "</ul>";
 
-# we can use the output of the template above to feed back into another template
+# we don't need to instantiate the object ($T) again to use another template, just load a new template
+$template3 = $T->load_template("demo3");
+
+# we can use the output of the template above (stored in $bandlist) to feed into another template
 $band = [
 	'bandname' => 'yes',
 	'year_formed'=>1968,
-	'number_albums'=>21,
+	'number_albums'=>21.2, //this will be corrected via intval
 	'bandlist'=>$bandlist
 ];
-$template3 = $T->load_template("demo3");
 echo $T->render($template3,$band); 

@@ -162,10 +162,10 @@ class smallaxe_template {
 												$length = $fxparts[2]; 
 												$string = substr($string, $start, $length); 
 												break; 
-											case 'ellipses':
+											case 'ellipsis':
 												$strlen = strlen($string);
 												if($strlen>$fxparts[1]) {
-													$string = substr($string, 0, $fxparts[1])."..."; 
+													$string = substr($string, 0, $fxparts[1])."&#8230;"; 
 												} 
 												break; 												
 											default: 

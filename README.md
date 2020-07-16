@@ -54,7 +54,7 @@ Small Axe templates support multi-argument functions in the format <code>{{var|f
 
 * substr:offset:length
 
-You can also use the shortcut function <code>ellipses</code> to trim a string if it exceeds the argument. For example, <code>{{var|ellipses:18}}</code> will trim and append "..." to a $var only if it exceeds 18 characters in length, including spaces. 
+You can also use the shortcut function <code>ellipsis</code> to trim a string if it exceeds the argument. For example, <code>{{var|ellipsis:18}}</code> will trim and append "..." to a $var only if it exceeds 18 characters in length, including spaces. 
 
 ### Extention
 Small Axe can handle other functions in templates using the extend() method. For example:  
