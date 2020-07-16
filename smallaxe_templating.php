@@ -129,6 +129,16 @@ class smallaxe_template {
 	* @return string - Output of the template file. Likely HTML.
     */	
 	function render($template,$args) {
+		/* the next few lines will extract embedded templates  */ 
+		preg_match_all('/(\{\{\%template\|)([A-Za-z0-9-.,]+)(\}\})/U',$template,$template_matches); 
+		if(is_array($template_matches)) { foreach($template_matches[2] as $key=>$tm) {
+			$sub = $this->load_template($tm); 
+			$sub_data = $args; 
+			if(is_array($args[$tm])) { foreach($args[$tm] as $k=>$v) { $sub_data[$k] = $v; } }
+			$repl = $this->render($sub,$sub_data);
+			$template = str_replace($template_matches[0][$key],$repl,$template);			
+		} }
+		/* the above few lines will extract embedded templates  */ 
 		if(is_array($args)):
 			foreach($args as $k=>$v):  
 				preg_match_all(
@@ -146,6 +156,12 @@ class smallaxe_template {
 									break; 
 								case 'lower': 
 									$string = strtolower($string); 
+									break; 
+								case 'sup': 
+									$string = "<sup>".$string."</sup>"; 
+									break; 
+								case 'sub': 
+									$string = "<sub>".$string."</sub>"; 
 									break; 
 								case 'escape': 
 								case 'e': 
@@ -183,7 +199,7 @@ class smallaxe_template {
 						$template = str_replace($pattern,$string,$template); 
 					endforeach; // end matches
 					unset($matches,$var,$string,$pattern,$functions); 
-				}
+				} 
 				// date replacements
 				$template = preg_replace_callback('/(\{\{date\|)([A-Za-z0-9-, |]+)(\}\})/U',function($matches) {
 					return date($matches[2]); 

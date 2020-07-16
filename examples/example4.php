@@ -31,10 +31,10 @@
 					<li class="nav-item">
 						<a class="nav-link" href="https://code.adamscheinberg.com/smallaxe-templating/examples/example2.php">Example 2</a>
 					</li>
-					<li class="nav-item active">
+					<li class="nav-item">
 						<a class="nav-link" href="https://code.adamscheinberg.com/smallaxe-templating/examples/example3.php">Example 3</a>
 					</li>	
-					<li class="nav-item">
+					<li class="nav-item active">
 						<a class="nav-link" href="https://code.adamscheinberg.com/smallaxe-templating/examples/example4.php">Example 4</a>
 					</li>							
 				</ul>
@@ -43,13 +43,13 @@
 		<br>	
 		
 		<div class='card card-body bg-light'>
-			<h1>Templates within templates</h1>
-			<p>You can feed the output of a Small Axe template into another template</p>
+			<h1>Nested Templates</h1>
+			<p>Automate population of templates within templates: Inception style</p>
 		</div><br>
 		
 		<ul class="nav nav-tabs">
 			<li class="nav-item">
-				<a class="nav-link disabled sourceToggle" rel="#void" href="#void"><b>Example 3</b></a>
+				<a class="nav-link disabled sourceToggle" rel="#void" href="#void"><b>Example 4</b></a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link active sourceToggle" rel="#compiledBox" href="#">Rendered</a>
@@ -58,36 +58,45 @@
 				<a class="nav-link sourceToggle" rel="#sourceBox" href="#">Source</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link sourceToggle" rel="#tmpl2Box" href="#">demo2.tmpl</a>
+				<a class="nav-link sourceToggle" rel="#tmpl41Box" href="#">demo4-1.tmpl</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link sourceToggle" rel="#tmpl3Box" href="#">demo3.tpl</a>
+				<a class="nav-link sourceToggle" rel="#tmpl42Box" href="#">demo4-2.tpl</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link sourceToggle" rel="#tmpl43Box" href="#">demo4-3.tpl</a>
 			</li>
 		</ul>
 		<div id='compiledBox' class='contentBox'>
 <?php
 # require the templating library 
-require 'example3-php.php'; 
+require 'example4-php.php'; 
 ?>
 		</div>
 		<div id='sourceBox' class='contentBox'>
 <?php
 # highlight the templating library 
-highlight_file('example3-php.php'); 
+highlight_file('example4-php.php'); 
 ?>
 		</div>		
-		<div id='tmpl2Box' class='contentBox'>
+		<div id='tmpl41Box' class='contentBox'>
 <?php
 # highlight the template  
-highlight_file('../templates/demo2.tmpl'); 
+highlight_file('../templates/demo4-1.tmpl'); 
 ?>
 		</div>		
-		<div id='tmpl3Box' class='contentBox'>
+		<div id='tmpl42Box' class='contentBox'>
 <?php
 # highlight the template  
-highlight_file('../templates/demo3.tpl'); 
+highlight_file('../templates/demo4-2.tmpl'); 
 ?>
-		</div>					
+		</div>	
+		<div id='tmpl43Box' class='contentBox'>
+<?php
+# highlight the template  
+highlight_file('../templates/demo4-3.tmpl'); 
+?>
+		</div>							
 		
 		<script   src="https://code.jquery.com/jquery-3.5.1.min.js"   integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="   crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

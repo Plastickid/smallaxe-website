@@ -36,6 +36,9 @@
 					<li class="nav-item">
 						<a class="nav-link" href="https://code.adamscheinberg.com/smallaxe-templating/examples/example3.php">Example 3</a>
 					</li>	
+					<li class="nav-item">
+						<a class="nav-link" href="https://code.adamscheinberg.com/smallaxe-templating/examples/example4.php">Example 4</a>
+					</li>	
 				</ul>
 			</div>
 		</nav>		
@@ -43,7 +46,7 @@
 		<div id="content" style='margin-top:20px;'>&nbsp;</div>
 		<div id="mdsource" style="display:none"><?php include 'README.md'; ?></div>
 		<script>
-			var md = new Remarkable({ html: true });
+			var md = new Remarkable({ html: true});
 			document.getElementById('content').innerHTML = md.render(document.getElementById('mdsource').innerHTML);
 		</script>	
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

@@ -33,14 +33,17 @@
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="https://code.adamscheinberg.com/smallaxe-templating/examples/example3.php">Example 3</a>
-					</li>								
+					</li>	
+					<li class="nav-item">
+						<a class="nav-link" href="https://code.adamscheinberg.com/smallaxe-templating/examples/example4.php">Example 4</a>
+					</li>							
 				</ul>
 			</div>
 		</nav>	
 		<br>
 		<div class='card card-body bg-light'>
 		<h1>Small Axe Basics</h1>
-		<p>You can feed the output of a Small Axe template into another template. Use the source tab below to compare the rendered template to the source.</p>
+		<p>Use the source tab below to compare the rendered template to the source to use how you can use Small Axe Templating.</p>
 		</div><br>
 		<ul class="nav nav-tabs">
 			<li class="nav-item">

@@ -8,7 +8,7 @@
 		<p>The current date is {{date|F d, Y}}, which is often written as {{date|Y-m-d}} and corresponds to unix timestamp {{date|U}}, which can also be expressed as [[timestamp]]. You can use arguments found at <a href="https://php.net/date">php.net/date</a>.</p>
 		<p>It has basic skills, such as escaping text: <code>{{test_text|e}}</code></p>
 		<p>It supports simple string functions, such as str_rot13 - {{software_title|str_rot13}} - and juggling case - {{software_title|lower}}. </p>
-		{* this is a curly star style comment *}
+		{* this is a Smarty style comment *}
 		<p>It supports custom functions: {{software_title|custom_function}}. </p>
 		/* 
 		this 
@@ -18,7 +18,7 @@
 		comment */
 		<p>It also can chain functions, such as uppercasing and str_rot13: {{software_title|upper|str_rot13}}. </p>
 		<p>Here is a function that was dynamically added, sha1: {{random|sha1}}</p>
-		// this is a third comment, C# style, single line only
+		// this is a third comment, single line only
 		<p>Here are example of a dynamic placeholders 1) a unique identifier: [[uniqid]] 2) a datetime: [[datetime]] and 3) a datetime in UTC: [[utcdatetime]].</p>
 		<p>You can use <b>substr</b>, here's substr($str,3,10): <i>{{longstring|substr:3:10}}</i>. A long string can be quickly shortened using the shortcut function <b>ellipsis</b>: <i>{{longstring|ellipsis:18}}</i></p>
 	</body>

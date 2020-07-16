@@ -33,6 +33,9 @@
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="https://code.adamscheinberg.com/smallaxe-templating/examples/example3.php">Example 3</a>
+					</li>	
+					<li class="nav-item">
+						<a class="nav-link" href="https://code.adamscheinberg.com/smallaxe-templating/examples/example4.php">Example 4</a>
 					</li>						
 				</ul>
 			</div>
