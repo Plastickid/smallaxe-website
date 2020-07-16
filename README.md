@@ -48,6 +48,8 @@ The following short-hand functions are supported:
 * lower &mdash; wrap output in strtolower
 * escape &mdash; escape output
 * e &mdash; an alias of _escape_
+* sup &mdash; wrap output in sup tags
+* sub &mdash; wrap output in sub tags
 
 ### Multi-argument functions
 Small Axe templates support multi-argument functions in the format <code>{{var|function:arg1:arg2:arg3}}</code>. Currently, you can use the following functions: 
