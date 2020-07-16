@@ -52,7 +52,7 @@ The following short-hand functions are supported:
 ### Multi-argument functions
 Small Axe templates support multi-argument functions in the format <code>{{var|function:arg1:arg2:arg3}}</code>. Currently, you can use the following functions: 
 
-* substr:offset:length
+* substr:offset:length, e.g. ```{{str|3:10}}```
 
 You can also use the shortcut function <code>ellipsis</code> to trim a string if it exceeds the argument. For example, <code>{{var|ellipsis:18}}</code> will trim and append "..." to a $var only if it exceeds 18 characters in length, including spaces. 
 
@@ -68,9 +68,17 @@ Small Axe will **not** accept the functions _exec(), system(), passthru(),_ or _
 ### Other syntax
 ```{{date|format}}``` is supported, where format is an unquoted string using the arguments at php.net/date. 
 
-### Dynamic Replacement
-```[[year]]``` will display the current year.  
-```[[uniqid]]``` will generate a unique - [but not unguessable](https://www.php.net/uniqid) - identifier.  
+### Comments 
+Small Axe templates support comments wrapped in either ```{* curly brace star tags *}``` or ```/* C style comments */``` are stripped from the rendered template
+
+### Dynamic Placeholders
+Dynamics placeholders will be replaced in the rendered template, but accept no arguments. 
+
+* ```[[year]]``` will display the current year.  
+* ```[[uniqid]]``` will generate a unique - [but not unguessable](https://www.php.net/uniqid) - identifier. 
+* ```[[timestamp]]``` will generate a current UNIX timestamp 
+* ```[[datetime]]``` will generate a MySQL compatible timestamp in the current server timezone, e.g. YYYY-mm-dd 24:00:00
+* ```[[utcdatetime]]``` will generate a MySQL compatible timestamp in UTC, e.g. YYYY-mm-dd 24:00:00
 
 ## Interacting with the Small Axe object
 ``` $t->extend(['function1','function2','function3']); ``` will allow you to add additional supported functions 

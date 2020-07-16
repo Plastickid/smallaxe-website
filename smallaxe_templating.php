@@ -49,7 +49,7 @@ class smallaxe_template {
 	*/		
 	public function extend($functions=[]) {
 		foreach($functions as $fx) { 
-			if(!in_array($fx,['exec','system','passthru','shell_exec'])) {
+			if(!in_array(strtolower($fx),['exec','system','passthru','shell_exec'])) {
 				$this->allow_fx[] = $fx; 
 			}
 		}
@@ -84,12 +84,7 @@ class smallaxe_template {
 	* @return void
 	*/		
 	public function load_supported_functions() { 
-		foreach($this->default_fx as $fx) { 
-			$this->allow_fx[] = $fx; 
-		}
-		foreach($this->all_supported as $fx) { 
-			$this->allow_fx[] = $fx; 
-		}		
+		$this->allow_fx = array_merge($this->all_supported, $this->default_fx);
 	}
 
 	/**
@@ -189,11 +184,23 @@ class smallaxe_template {
 					endforeach; // end matches
 					unset($matches,$var,$string,$pattern,$functions); 
 				}
+				// date replacements
 				$template = preg_replace_callback('/(\{\{date\|)([A-Za-z0-9-, |]+)(\}\})/U',function($matches) {
 					return date($matches[2]); 
 				},$template); 	
-				$template = str_replace('[[uniqid]]',uniqid(),$template); 	
-				$template = str_replace('[[year]]',date("Y"),$template);	 	
+				// strip C style and curly star comments
+				$template = preg_replace_callback('/([\/\{]\*)([A-Za-z0-9\s]+)(\*[\}|\/])/U',function($matches) {
+					return '';
+				},$template);	 
+				// strip C# style single line comments
+				$template = preg_replace_callback('/\/\/([A-Za-z0-9,\# ]+)/',function($matches) {
+					return '';
+				},$template);
+				// dynamic placeholder replacement
+				$repl = ['[[uniqid]]','[[year]]','[[timestamp]]','[[datetime]]','[[utcdatetime]]'];
+				$with = [uniqid(), date("Y"), date("U"), date("Y-m-d G:i:s"), gmdate("Y-m-d G:i:s")];
+				$template = str_replace($repl,$with,$template); 	
+				// simple var replacement		
 				$template = str_replace('{{'.$k.'}}',$v,$template); 
 			endforeach; 
 		endif; 

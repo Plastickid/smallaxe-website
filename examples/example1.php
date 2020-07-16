@@ -40,7 +40,7 @@
 		<br>
 		<div class='card card-body bg-light'>
 		<h1>Small Axe Basics</h1>
-		<p>You can feed the output of a Small Axe template into another template</p>
+		<p>You can feed the output of a Small Axe template into another template. Use the source tab below to compare the rendered template to the source.</p>
 		</div><br>
 		<ul class="nav nav-tabs">
 			<li class="nav-item">
