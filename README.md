@@ -52,7 +52,7 @@ The following short-hand functions are supported:
 ### Multi-argument functions
 Small Axe templates support multi-argument functions in the format <code>{{var|function:arg1:arg2:arg3}}</code>. Currently, you can use the following functions: 
 
-* substr:offset:length, e.g. ```{{str|3:10}}```
+* substr:offset:length, e.g. ```{{str|substr:3:10}}```
 
 You can also use the shortcut function <code>ellipsis</code> to trim a string if it exceeds the argument. For example, <code>{{var|ellipsis:18}}</code> will trim and append "..." to a $var only if it exceeds 18 characters in length, including spaces. 
 
