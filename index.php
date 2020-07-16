@@ -10,6 +10,7 @@
 			h1 { background:#efe; padding:10px; }
 			h2 { background:#ffe; padding:5px; }
 			h3 { background:#cecece; padding:5px; }
+			em { font-style:normal; background:#eee; color:#e83e8c; padding:2px; font-family:'courier new';}
 			code { background:#eee; padding:2px; font-family:'courier new'; }		 
 		</style>
 		<title>Small Axe Templating</title>

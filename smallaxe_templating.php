@@ -12,6 +12,7 @@ class smallaxe_template {
 	public $mc;
 	public $ttl; 
 	private $caching;
+	private $cache_compiled; 
 		
 	function __construct($tmpl_path,$options=[]) {
 		$this->tmpl_path  = $tmpl_path;
@@ -21,6 +22,7 @@ class smallaxe_template {
 		$this->mc = false; 
 		$this->ttl = 0; 
 		$this->caching = false; 
+		$this->cache_compiled = false; 
 		$this->default_fx = ['ucfirst','ucwords','strtoupper','strtolower','htmlspecialchars','trim','nl2br', 'number_format','stripslashes', 'strip_tags', 'md5','intval'];  
 		$this->all_supported = ['addcslashes', 'addslashes', 'bin2hex', 'chop', 'chr', 'chunk_split', 'convert_cyr_string', 'convert_uudecode', 'convert_uuencode', 'count_chars', 'crc32', 'crypt', 'get_html_translation_table', 'hex2bin', 'html_entity_decode', 'htmlentities', 'htmlspecialchars_decode', 'lcfirst', 'ltrim', 'metaphone', 'money_format',  'ord', 'quotemeta', 'rtrim', 'sha1', 'soundex', 'str_rot13', 'str_word_count',  'stripcslashes', 'strlen', 'strrev', 'strtok','floatval','ceil','floor' ];
 		$this->allow_fx = $this->default_fx; 
@@ -40,6 +42,73 @@ class smallaxe_template {
 			$this->caching = true; 
 		}
 	}
+	
+	/**
+	* cache_compiled()
+	*
+	* @param cache_status - boolean informing whether compiled templates should be cached 
+	* @return void
+	*/		
+	public function cache_compiled($cache_status=false) {
+		$this->cache_compiled = (true===$cache_status) ? true : false;
+		return;   
+	}	
+	
+	/**
+	* cache_create()
+	*
+	* @param $tmpl - template name
+	* @param $text - template text to cache
+	* @param ttl - an integer, seconds to keep template in memory cache, default: 86400/1 dsay
+	* @return void
+	*/		
+	public function cache_create($tmpl,$text,$ttl=86400) {
+		if($this->caching) {
+			$this->mc->add(md5(".".$tmpl),$text,$ttl); 
+		}
+	}	
+
+	/**
+	* cache_date()
+	*
+	* @param $tmpl - template name
+	* @param $text - template text to cache
+	* @param ttl - an integer, seconds to keep template in memory cache, default: 86400/1 dsay
+	* @return void
+	*/		
+	public function cache_update($tmpl,$text,$ttl=86400) {
+		if($this->caching) {
+			$this->mc->set(md5(".".$tmpl),$text,$ttl); 
+		}
+	}	
+
+	/**
+	* cache_destroy()
+	*
+	* @param $tmpl 
+	* @return void
+	*/		
+	public function cache_detroy($tmpl) {
+		if($this->caching) {
+			$this->mc->delete(md5(".".$tmpl); 
+		}
+	}	
+
+	/**
+	* cache_read()
+	*
+	* @param $tmpl - template name
+	* @param $text - template text to cache
+	* @param ttl - an integer, seconds to keep template in memory cache, default: 300/5 mins
+	* @return void
+	*/		
+	public function cache_read($tmpl) {
+		if($this->caching) {
+			$ctmpl = $this->mc->get(md5(".".$tmpl)); 
+			if($ctmpl) { return $ctmpl; }
+		}
+		return false; 
+	}	
 	
 	/**
 	* extend()
