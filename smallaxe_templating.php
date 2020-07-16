@@ -111,7 +111,12 @@ class smallaxe_template {
 				$tmpl .= ".tmpl";
 				$text = file_get_contents($this->tmpl_path.$tmpl);
 				if($this->caching) { $this->mc->set(md5($tmpl), $text, $this->ttl); }
-			return $text;   			
+			return $text;   
+		} elseif(file_exists($this->tmpl_path.$tmpl.".tpl")) {
+			$tmpl .= ".tpl";
+			$text = file_get_contents($this->tmpl_path.$tmpl);
+			if($this->caching) { $this->mc->set(md5($tmpl), $text, $this->ttl); }
+			return $text;   						
 		} elseif(file_exists($tmpl)) {
 			$text = file_get_contents($tmpl); 
 			if($this->caching) { $this->mc->set(md5($tmpl), $text, $this->ttl); }

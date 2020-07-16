@@ -36,7 +36,8 @@ $vars = [
 ];
 
 # load template by passing either the file in the templates folder OR a hard coded path 
-# if no file extension is provided and no file is matched without extension, it will assume ".tmpl"
+# when searching the template directory, if no file extension is provided and no file is matched without an extension, 
+# it will assume ".tmpl" or ".tpl"
 $template	 = $T->load_template("demo1");
 
 # compile the template 

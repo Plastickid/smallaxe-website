@@ -58,7 +58,7 @@
 				<a class="nav-link sourceToggle" rel="#tmpl2Box" href="#">demo2.tmpl</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link sourceToggle" rel="#tmpl3Box" href="#">demo3.tmpl</a>
+				<a class="nav-link sourceToggle" rel="#tmpl3Box" href="#">demo3.tpl</a>
 			</li>
 		</ul>
 		<div id='compiledBox' class='contentBox'>
@@ -82,7 +82,7 @@ highlight_file('../templates/demo2.tmpl');
 		<div id='tmpl3Box' class='contentBox'>
 <?php
 # highlight the template  
-highlight_file('../templates/demo3.tmpl'); 
+highlight_file('../templates/demo3.tpl'); 
 ?>
 		</div>					
 		
