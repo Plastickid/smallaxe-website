@@ -14,7 +14,7 @@ Finally, you pass an associative array to the rendering function:
 
 *$html = $t->render($template,$data);*
 
-That's it. *$html* will now contain your ready-to-go output. 
+That's it. `$html` will now contain your ready-to-go output. 
 
 You can see the output at [code.adamscheinberg.com](https://code.adamscheinberg.com/smallaxe-templating/)
 
@@ -22,12 +22,12 @@ You can see the output at [code.adamscheinberg.com](https://code.adamscheinberg.
 
 ### Variables 
 
-Small Axe Templating uses double curly braces for template variable, e.g. *{{variable}}*. If a curly-brace-wrapped variable matches an index of your $data array, it will be replaced by the value of that array element your rendered template. If it doesn't match an argument, it will be left alone.  
+Small Axe Templating uses double curly braces for template variable, e.g. `{{variable}}`. If a curly-brace-wrapped variable matches an index of your $data array, it will be replaced by the value of that array element your rendered template. If it doesn't match an argument, it will be left alone.  
 
-Small Axe uses double brackets for dynamic replacement. *[[year]]*, for example, will show the current year.  
+Small Axe uses double brackets for dynamic replacement. `[[year]]`, for example, will show the current year.  
 
 ### Functions 
-You can also manipulate the variable using piped functions, e.g. *{{variable|function}}*. Note that functions can be chained, meaning *{{variable|function1|function2|function3}}* is valid syntax.  
+You can also manipulate the variable using piped functions, e.g. `{{variable|function}}`. Note that functions can be chained, meaning `{{variable|function1|function2|function3}}` is valid syntax.  
 
 The functions that are current supported by default are: 
 * trim 
@@ -54,7 +54,7 @@ The following short-hand functions are supported:
 ### Multi-argument functions
 Small Axe templates support multi-argument functions in the format `{{var|function:arg1:arg2:arg3}}`. Currently, you can use the following functions: 
 
-* substr:offset:length, e.g. *{{str|substr:3:10}}*
+* substr:offset:length, e.g. `{{str|substr:3:10}}`
 
 You can also use the shortcut function `ellipsis` to trim a string if it exceeds the argument. For example, `{{var|ellipsis:18}}` will trim and append "..." to a $var only if it exceeds 18 characters in length, including spaces. 
 
@@ -63,26 +63,26 @@ Small Axe can handle other functions in templates using the extend() method. For
 *$t->extend(['function1','function2','function3']);* 
 will add additional functionality to the templating process. 
 
-A few notes: functions will only work if they 1) accept a string with no further arguments and 2) return a string. The functions that Small Axe Templating is known to support are: *addcslashes, addslashes, bin2hex, chop, chr, chunk_split, convert_cyr_string, convert_uudecode, convert_uuencode, count_chars, crc32, crypt, get_html_translation_table, hex2bin, html_entity_decode, htmlentities, htmlspecialchars_decode, lcfirst, ltrim, metaphone, money_format, ord, quotemeta, rtrim, sha1, soundex, str_rot13, str_word_count, stripcslashes, strlen, strrev, strtok, floatval, ceil, floor*
+A few notes: functions will only work if they 1) accept a string with no further arguments and 2) return a string. The functions that Small Axe Templating is known to support are: `addcslashes, addslashes, bin2hex, chop, chr, chunk_split, convert_cyr_string, convert_uudecode, convert_uuencode, count_chars, crc32, crypt, get_html_translation_table, hex2bin, html_entity_decode, htmlentities, htmlspecialchars_decode, lcfirst, ltrim, metaphone, money_format, ord, quotemeta, rtrim, sha1, soundex, str_rot13, str_word_count, stripcslashes, strlen, strrev, strtok, floatval, ceil, floor`
 
 Small Axe will **not** accept the functions _exec(), system(), passthru(),_ or _shell_exec()_ as these functions can create dangerous execution conditions. 
 
 ### Other syntax
-*{{date|format}}* is supported, where format is an unquoted string using the arguments at php.net/date. 
+`{{date|format}}` is supported, where format is an unquoted string using the arguments at php.net/date. 
 
 ### Comments 
-Small Axe templates support multiline comments wrapped in either *{\* curly brace star tags \*}* Smarty style tags or */\* C style comments \*/*. They will be stripped from the rendered template.
+Small Axe templates support multiline comments wrapped in either `{* curly brace star tags *}` Smarty style tags or `/* C style comments */`. They will be stripped from the rendered template.
 
-Small Axe templates also support single line comments using the *// double slash* syntax.  
+Small Axe templates also support single line comments using the `// double slash` syntax.  
 
 ### Dynamic Placeholders
 Dynamics placeholders will be replaced in the rendered template, but accept no arguments. 
 
-* *[[year]]* will display the current year.  
-* *[[uniqid]]* will generate a unique - [but not unguessable](https://www.php.net/uniqid) - identifier. 
-* *[[timestamp]]* will generate a current UNIX timestamp 
-* *[[datetime]]* will generate a MySQL compatible timestamp in the current server timezone, e.g. YYYY-mm-dd 24:00:00
-* *[[utcdatetime]]* will generate a MySQL compatible timestamp in UTC, e.g. YYYY-mm-dd 24:00:00
+* `[[year]]` will display the current year.  
+* `[[uniqid]]` will generate a unique - [but not unguessable](https://www.php.net/uniqid) - identifier. 
+* `[[timestamp]]` will generate a current UNIX timestamp 
+* `[[datetime]]` will generate a MySQL compatible timestamp in the current server timezone, e.g. YYYY-mm-dd 24:00:00
+* `[[utcdatetime]]` will generate a MySQL compatible timestamp in UTC, e.g. YYYY-mm-dd 24:00:00
 
 ## Interacting with the Small Axe object
 *$t->extend(['function1','function2','function3']);* will allow you to add additional supported functions 
@@ -113,7 +113,7 @@ Similarly, *$t->cache_compiled(false)* will disable caching of compiled template
 *$t->cache_destroy($tmpl)* will delete a compiled template from cache. 
 
 ### Nested templates
-You can include templates within templates by using the syntax *{{%template|template_name}}* where template_name is the file name of the template, e.g. _test.tmpl_. Templates can be nested within nested templates recursively, as well. 
+You can include templates within templates by using the syntax `{{%template|template_name}}` where template_name is the file name of the template, e.g. _test.tmpl_. Templates can be nested within nested templates recursively, as well. 
 
 Data within nested templates will be in the outer template's scope. In other words, you will load your $data for all templates, including nested templates, in the initial $data array.  To specify different values for nested templates, you can created an array within your data array with an index of the template name and rewrite the elements. For example: 
 
