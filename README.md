@@ -113,7 +113,7 @@ Similarly, *$t->cache_compiled(false)* will disable caching of compiled template
 *$t->cache_destroy($tmpl)* will delete a compiled template from cache. 
 
 ### Nested templates
-You can include templates within templates by using the syntax `{{%template|template_name}}` where template_name is the file name of the template, e.g. _test.tmpl_. Templates can be nested within nested templates recursively, as well. 
+You can include templates within templates by using the syntax `{{@template file=template_name}}` where ```template_name``` is the file name of the template, e.g. _test.tmpl_. Templates can be nested within nested templates recursively, as well. 
 
 Data within nested templates will be in the outer template's scope. In other words, you will load your $data for all templates, including nested templates, in the initial $data array.  To specify different values for nested templates, you can created an array within your data array with an index of the template name and rewrite the elements. For example: 
 
@@ -153,3 +153,32 @@ $data => Array[
 	]
 ]
 </pre>
+
+### Loops
+You can create loops in templates using the command ```@loop```. You must provide an argument called ```data```, where data is the name of the element in your $data array that itself contains an array of data. For example: 
+
+```Smarty
+<ul>
+{{@loop data=people}}
+	<li>{{firstname|ucwords}} {{lastname|ucwords}}</li>
+{{/loop}}
+</ul>
+```
+
+Would be called like so: 
+
+<pre><div class='colorMe'>// prep the data array
+$args['people'] = [
+	['firstname'=>'Charlie', 'lastname'=>'Bucket'],
+	['firstname'=>'Violet', 'lastname'=>'Beauregard'],
+	['firstname'=>'Veruca', 'lastname'=>'Salt'],
+];
+
+// create the Small Axe object
+$t = new Smallaxe\smallaxe_template('/path/to/templates/');
+
+// load the template 
+$template = $t->load_template('template-name.tmpl'); 
+
+// render the template
+echo $t->render($template,$args); </div></pre>

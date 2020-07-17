@@ -15,7 +15,7 @@ $members = [
 ];
 
 # load demo2 template
-$template2	= $T->load_template("demo2");
+$template2	= $T->load_template("demo2.tmpl");
 $bandlist 	= null;
 foreach($members as $member) {
 	# render the template and appoend it to the $bandlist variable
@@ -23,7 +23,7 @@ foreach($members as $member) {
 }
 
 # we don't need to instantiate the object ($T) again to use another template, just load a new template
-$template3 = $T->load_template("demo3");
+$template3 = $T->load_template("demo3.tmpl");
 
 # we can use the output of the template above (stored in $bandlist) to feed into another template
 $band = [

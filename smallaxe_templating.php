@@ -1,7 +1,8 @@
 <?php
 /**
  * Smallaxe templating engine
- *
+ * examples: code.smallaxesolutions.com/smallaxe-templating for more
+ * source: github.com/sethadam1/smallaxe-templating 
  */
  
 namespace Smallaxe;
@@ -74,7 +75,7 @@ class smallaxe_template {
 	*
 	* @param $tmpl - template name
 	* @param $text - template text to cache
-	* @param ttl - an integer, seconds to keep template in memory cache, default: 86400/1 dsay
+	* @param ttl - an integer, seconds to keep template in memory cache, default: 86400/1 day
 	* @return void
 	*/		
 	public function cache_update($tmpl,$text,$ttl=86400) {
@@ -91,7 +92,7 @@ class smallaxe_template {
 	*/		
 	public function cache_detroy($tmpl) {
 		if($this->caching) {
-			$this->mc->delete(md5(".".$tmpl); 
+			$this->mc->delete(md5(".".$tmpl)); 
 		}
 	}	
 
@@ -200,7 +201,7 @@ class smallaxe_template {
     */	
 	function render($template,$args) {
 		/* the next few lines will extract embedded templates  */ 
-		preg_match_all('/(\{\{\%template\|)([A-Za-z0-9-.,]+)(\}\})/U',$template,$template_matches); 
+		preg_match_all('/(\{\{\@template file=)([A-Za-z0-9-_.,]+)(\}\})/U',$template,$template_matches); 
 		if(is_array($template_matches)) { foreach($template_matches[2] as $key=>$tm) {
 			$sub = $this->load_template($tm); 
 			$sub_data = $args; 
@@ -209,6 +210,28 @@ class smallaxe_template {
 			$template = str_replace($template_matches[0][$key],$repl,$template);			
 		} }
 		/* the above few lines will extract embedded templates  */ 
+		/* loops  */ 
+		unset($matches,$repl); 
+		preg_match_all('/((\{\{\@loop data=)([A-Za-z0-9_= ]+)(\}\}))(.+)((\{\{)\/loop(\}\}))/Uis',$template,$matches);
+		if(is_array($matches)) { 
+			foreach($matches[0] as $key=>$pattern) {
+				if(''==trim($pattern)) { continue; }
+				if(''==$matches[3][$key]) { continue; }
+				$start 	= $matches[1][$key];  	 
+				$end 	= $matches[6][$key];
+				$template_text = str_replace($start,'',$pattern); 
+				$template_text = str_replace($end,'',$template_text); 
+				$templ_data = $args[$matches[3][$key]];
+				if(is_array($templ_data)) {		
+					foreach($templ_data as $subdata) {
+						$repl .= $this->render(trim($template_text),$subdata);
+					}
+					$template = str_replace($pattern,$repl,$template);
+				}		
+			} 
+			unset($matches);
+		}		
+		/* end loop section */ 
 		if(is_array($args)):
 			foreach($args as $k=>$v):  
 				preg_match_all(
