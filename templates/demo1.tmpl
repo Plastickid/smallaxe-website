@@ -21,5 +21,7 @@
 		// this is a third comment, single line only
 		<p>Here are example of a dynamic placeholders 1) a unique identifier: [[uniqid]] 2) a datetime: [[datetime]] and 3) a datetime in UTC: [[utcdatetime]].</p>
 		<p>You can use <b>substr</b>, here's substr($str,3,10): <i>{{longstring|substr:3:10}}</i>. A long string can be quickly shortened using the shortcut function <b>ellipsis</b>: <i>{{longstring|ellipsis:18}}</i></p>
+		
+		<p>Variables that end with an exclamation point will be removed if they are not matched - for example, it should be blank between the quotes "{{test!}}". But those unmatched will remain untouched, like {{so}}. </p> 
 	</body>
 </html>

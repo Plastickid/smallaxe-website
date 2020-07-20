@@ -1,0 +1,13 @@
+DirectoryIndex index.php
+
+<ifModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/html text/plain text/xml application/xml application/xhtml+xml text/css text/javascript application/javascript application/x-javascript
+</ifModule>
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /smallaxe-templating/
+
+RewriteRule ^docs/([0-9A-Za-z-]+)(.md)(/?) docs.php?file=$1 [QSA,L]
+
+</IfModule>

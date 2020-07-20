@@ -1,7 +1,7 @@
 <?php
 
 # require the templating library 
-require '../smallaxe_templating.php'; 
+require '../source/smallaxe_templating.php'; 
 
 # first, you instanciate a Small Axe object
 $T = new Smallaxe\smallaxe_template(__DIR__.'/../templates/');
@@ -15,7 +15,7 @@ $members = [
 ];
 
 # load demo2 template
-$template2	= $T->load_template("demo2.tmpl");
+$template2	= $T->load_template("demo2-1.tmpl");
 $bandlist 	= null;
 foreach($members as $member) {
 	# render the template and appoend it to the $bandlist variable

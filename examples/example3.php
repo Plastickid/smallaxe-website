@@ -58,7 +58,7 @@ highlight_file('example3-php.php');
 		<div id='tmpl2Box' class='contentBox'>
 <?php
 # highlight the template  
-highlight_file('../templates/demo2.tmpl'); 
+highlight_file('../templates/demo2-1.tmpl'); 
 ?>
 		</div>		
 		<div id='tmpl3Box' class='contentBox'>

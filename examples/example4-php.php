@@ -1,7 +1,7 @@
 <?php
 
 # require the templating library 
-require '../smallaxe_templating.php'; 
+require '../source/smallaxe_templating.php'; 
 
 # first, you instanciate a Small Axe object
 $T = new Smallaxe\smallaxe_template('../templates/');
