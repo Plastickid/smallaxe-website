@@ -3,8 +3,11 @@
 # require the templating library 
 require '../source/smallaxe_templating.php'; 
 
-# first, you instanciate a Small Axe object
-$T = new Smallaxe\smallaxe_template(__DIR__.'/../templates/');
+# first, you instantiate a Small Axe object
+$T = new Smallaxe\smallaxe_template();
+
+# set the template path
+$T->set_template_path(__DIR__.'/../templates/');
 
 $members = [
 	['firstname'=>'steve', 'lastname'=>'howe', 'instrument'=>'guitar'],

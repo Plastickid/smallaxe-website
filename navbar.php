@@ -1,4 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<?php 
+	include __DIR__.'/../../nav.php'; 
+	echo "<br>";
+?><nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	<a class="navbar-brand" href="#">Small Axe Templating</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
@@ -38,7 +41,12 @@ foreach($mdfiles as $key=>$val) {
       		</li>	
     		<li class="nav-item">
 			  <a class="nav-link" href="https://github.com/sethadam1/smallaxe-templating/">Source @ Github</a>
-			</li>				  			  				
+			</li>	
+		</ul>
+		<ul class='navbar-nav mr-auto'>			  			  				
+			<li class="nav-item">
+				<a class="nav-link" href="/">code.adamscheinberg.com</a>
+			</li>		
 		</ul>
 	</div>
 </nav>	

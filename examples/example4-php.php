@@ -3,8 +3,11 @@
 # require the templating library 
 require '../source/smallaxe_templating.php'; 
 
-# first, you instanciate a Small Axe object
-$T = new Smallaxe\smallaxe_template('../templates/');
+# first, you instantiate a Small Axe object
+$T = new Smallaxe\smallaxe_template();
+
+# set the template path
+$T->set_template_path(__DIR__.'/../templates/');
 
 $data = [
 	'subject'=>'Space',
